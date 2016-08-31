@@ -13,10 +13,12 @@
 
 
 
-Retrofit is an Android and Java library that simplifies the process of making type-safe http requests.  We've written a basic Android application to show off a simple implementation of retrofit.
+Retrofit is an Android and Java library that simplifies the process of making type-safe http requests.  We've written a basic Android application to show off how to use Socrata's APIs with Retrofit.  You can find the Retrofit Github page here.
 
-First things first, we need to sort out our dependencies.  Note that Retrofit requires that GSON be added as well.
-<pre><code>// Retrofit
+https://github.com/square/retrofit
+
+First, we sort our dependencies.  Note that Retrofit requires that GSON be added as well.
+<pre><code>    // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
@@ -24,10 +26,9 @@ First things first, we need to sort out our dependencies.  Note that Retrofit re
     compile 'com.google.code.gson:gson:2.6.2'
 </code></pre>
 
-The first aspect of building our query is attaching a base URL, to which we will later affix more specific modifiers.  In this case, we are using a Seattle public API provided by Socrata.
+The first aspect of building our query is attaching a base URL.  Later we will add modifiers to refine our query.  In this case, we are using a Seattle public API provided by Socrata.
 
-<pre><code>
-	public class ApiClient {
+<pre><code>	public class ApiClient {
 	    public static final String BASE_URL = "https://data.seattle.gov";
 	    private static Retrofit retrofit = null;
 
@@ -43,10 +44,9 @@ The first aspect of building our query is attaching a base URL, to which we will
 	}
 </code></pre>
 
-Next we create an interface that will be automatically subclassed by Retrofit.  In this particular example, we are making two calls to a building permits API.  At this stage, one returns according to an as of yet unspecified WHERE  query, and the other according to the value of a returned key of type 'category'.  We will attach specific parameters to these later.
+Next we create an interface that will be automatically subclassed by Retrofit.  In this particular example, we are making two calls to a building permits API.  Neither is functional yet, but one will return based on a WHERE query, and the other any responses with 'category' of a given type.  We will attach specific parameters to these later.
 
-<pre><code>
-	public interface ApiInterface {
+<pre><code>	public interface ApiInterface {
 		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
     	@GET("resource/i5jq-ms7b.json")
     	Call<List<BuildingPermit>> getPermitsByValue(@Query("$$app_token") String apiToken,
@@ -63,8 +63,7 @@ Now we construct the model that we will inflate with the response.  We do this b
 
 Note that within the JSON response, Location is a sub-object.  We are able to access it in the same manner by creating a second model object that iself uses the information.  Please see the Github link for full code.
 
-<pre><code>
-	public class BuildingPermit {
+<pre><code>	public class BuildingPermit {
 		...
 		@SerializedName("category")
 	    private String category;
@@ -92,15 +91,13 @@ Note that within the JSON response, Location is a sub-object.  We are able to ac
 
 Next, wherever we plan to make our call we instantiate a client, then use it to create a polymorphically-accessed subclass of our ApiInterface class.
 
-<pre><code>
-		Retrofit client = ApiClient.getClient();
+<pre><code>		Retrofit client = ApiClient.getClient();
         ApiInterface apiInterface = client.create(ApiInterface.class);
 </code></pre>
 
 After that, our call is constructed by combining these various components.
 
-<pre><code>
-	Call<List<BuildingPermit>> call = apiInterface.getPermitsByValue(apiToken,
+<pre><code>	Call<List<BuildingPermit>> call = apiInterface.getPermitsByValue(apiToken,
                 ApiInterface.WHERE_VALUE_IS_UNDER_X + value, 100);
                 enqueueCall(call);
             }
@@ -108,8 +105,7 @@ After that, our call is constructed by combining these various components.
 
 Our enqueue method automatically queues up the call, then we override onResponse and onFailure to deal with these.  <B>Depending on how the JSON response is formatted, we may need to either inflate an object with various children, or an array of objects.</B>  We verify that we receive a 200 response, then use the response.body to create our objects.  Several helper methods exist within response to help troubleshoot problems, and in particularly response.code() and response.message() can be extremely helpful when debugging.
 
-<pre><code>
-    private void enqueueCall(Call<List<BuildingPermit>> call) {
+<pre><code>    private void enqueueCall(Call<List<BuildingPermit>> call) {
 
         call.enqueue(new Callback<List<BuildingPermit>>() {
 
