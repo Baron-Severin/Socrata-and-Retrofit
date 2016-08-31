@@ -49,12 +49,12 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
 <pre><code>	public interface ApiInterface {
 		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
     	@GET("resource/i5jq-ms7b.json")
-    	Call<List<BuildingPermit>> getPermitsByValue(@Query("$$app_token") String apiToken,
+    	Call< List< BuildingPermit > > getPermitsByValue(@Query("$$app_token") String apiToken,
                                                  @Query("$where") String value, @Query("$limit") int limit);
 
         // Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&category=COMMERCIAL&$limit=10
         @GET("resource/i5jq-ms7b.json")
-    	Call< List< BuildingPermit>> getPermitsByCategory(@Query("$$app_token") String apiToken,
+    	Call< List< BuildingPermit > > getPermitsByCategory(@Query("$$app_token") String apiToken,
                                                  @Query("category") String value, @Query("$limit") int limit);
     }
 </code></pre>
@@ -102,7 +102,7 @@ Next, wherever we plan to make our call we instantiate a client, then use it to 
 
 After that, our call is constructed by combining these various components.
 
-<pre><code>	Call< List< BuildingPermit>> call = apiInterface.getPermitsByValue(apiToken,
+<pre><code>	Call< List< BuildingPermit > > call = apiInterface.getPermitsByValue(apiToken,
                 ApiInterface.WHERE_VALUE_IS_UNDER_X + value, 100);
                 enqueueCall(call);
             }
@@ -110,12 +110,12 @@ After that, our call is constructed by combining these various components.
 
 Our enqueue method automatically queues up the call, then we override onResponse and onFailure to deal with these.  <B>Depending on how the JSON response is formatted, we may need to either inflate an object with various children, or an array of objects.</B>  We verify that we receive a 200 response, then use the response.body to create our objects.  Several helper methods exist within response to help troubleshoot problems, and in particularly response.code() and response.message() can be extremely helpful when debugging.
 
-<pre><code>    private void enqueueCall(Call< List< BuildingPermit>> call) {
+<pre><code>    private void enqueueCall(Call< List< BuildingPermit > > call) {
 
         call.enqueue(new Callback< List< BuildingPermit>>() {
 
             @Override
-            public void onResponse(Call< List< BuildingPermit>> call, Response< List< BuildingPermit>> response) {
+            public void onResponse(Call< List< BuildingPermit > > call, Response< List< BuildingPermit>> response) {
 
                 // If response code is from 200
                 if (response.code() > 199 && response.code() < 300) {
@@ -127,7 +127,7 @@ Our enqueue method automatically queues up the call, then we override onResponse
             }
 
             @Override
-            public void onFailure(Call< List< BuildingPermit>> call, Throwable t) {
+            public void onFailure(Call< List< BuildingPermit > > call, Throwable t) {
                 t.printStackTrace();
                 Toast.makeText(getBaseContext(), "No data received. Please check your" +
                         " connection and try again", Toast.LENGTH_LONG).show();
