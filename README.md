@@ -141,13 +141,13 @@ We verify that we receive a 200 HTTP response, then use the response.body() to c
 And now we have a list of Java objects, and modular queries that can be easily changed to fit user input.
 
 
-Full Application Code:
+<B>Full Application Code:</B>
+
 https://github.com/Baron-Severin/Socrata-and-Retrofit
 
 
-
+<B>Contributors:</B>
 <pre><code>
-Contributors:
 Severin Rudie: https://github.com/Baron-Severin
 Matthew Duffin: https://github.com/Duffin22
 Michael M Kang: https://github.com/mgkang0206
