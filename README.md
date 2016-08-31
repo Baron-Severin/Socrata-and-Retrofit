@@ -44,7 +44,7 @@ The first aspect of building our query is attaching a base URL.  Later we will a
 	}
 </code></pre>
 
-Next we create an interface that will be automatically subclassed by Retrofit.  In this particular example, we are making two calls to a building permits API.  Neither is functional yet, but one will return based on a WHERE query, and the other any responses with 'category' of a given type.  We will attach specific parameters to these later.
+Next we create an interface that will be automatically subclassed by Retrofit.  In this particular example, we are structuring an outline for future calls.  This is not all of the information required, but we will implement these calls later on with their specific information.
 
 <pre><code>	public interface ApiInterface {
 		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
@@ -54,12 +54,12 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
 
         // Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&category=COMMERCIAL&$limit=10
         @GET("resource/i5jq-ms7b.json")
-    Call<List<BuildingPermit>> getPermitsByCategory(@Query("$$app_token") String apiToken,
+    	\*Call<List<BuildingPermit>>\* getPermitsByCategory(@Query("$$app_token") String apiToken,
                                                  @Query("category") String value, @Query("$limit") int limit);
     }
 </code></pre>
 
-Now we construct the model that we will inflate with the response.  We do this by looking through our JSON response, and using the @SerializedName annotation to match their keys to the values we intend to store them in.  For example, this model can be used to create an object based on the following response.
+Now we construct the model that will be inflated with the response.  We do this by looking through our JSON response, and using the @SerializedName annotation to match their keys to the values we intend to store them in.  For example, this model can be used to create an object based on the following response.
 
 Note that within the JSON response, Location is a sub-object.  We are able to access it in the same manner by creating a second model object that iself uses the information.  Please see the Github link for full code.
 
