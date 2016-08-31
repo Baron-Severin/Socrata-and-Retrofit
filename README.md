@@ -63,26 +63,24 @@ Now we construct the model that will be inflated with the server response.  We d
 
 Note that within the JSON response, Location is a child object.  We are able to access it in the same manner by creating a second model object that iself uses @SerializedName to sort the information.  Please see the Github link for full code.
 
-<pre><code>
-	JSON Response:
-		{
-	...
-	category: "SINGLE FAMILY / DUPLEX",
-	location: {
-	type: "Point",
-	coordinates: [
-	-122.393174,
-	47.571636
-	]
-	},
-	value: "0"
-	...
+<B>JSON Response:</B>
+<pre><code>{
+		...
+		category: "SINGLE FAMILY / DUPLEX",
+		location: {
+		type: "Point",
+		coordinates: [
+		-122.393174,
+		47.571636
+		]
+		},
+		value: "0"
+		...
 	}
 </code></pre>
 
-<pre><code>
-	Model:
-	public class BuildingPermit {
+<B>Model:</B>
+<pre><code>	public class BuildingPermit {
 		...
 		@SerializedName("category")
 	    private String category;
