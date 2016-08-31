@@ -82,7 +82,7 @@ Now we construct the model that will be inflated with the API response.  To find
 
 Note that in the above example, the key 'location' is inflated into a custom child object.  This child object must also use the @SerializedName() annotation for its variables.
 
-Then wherever we plan to make our call, we create a client and use it to create a subclass of our ApiInterface, using Retrofit.create().
+Next, when we plan to make our call, we create a client and use it to create a subclass of our ApiInterface, using Retrofit.create().
 
 <pre><code>		Retrofit client = ApiClient.getClient();
         ApiInterface apiInterface = client.create(ApiInterface.class);
@@ -126,7 +126,7 @@ We verify that we receive a 200 HTTP response, then use the response.body() to c
     }
 </code></pre>
 
-And now we have a list of Java objects, and modular queries that can be easily changed to fit user input.
+Now we have a list of Java objects, and modular queries that can be easily changed to fit user input.
 
 
 <B>Full Application Code:</B>
