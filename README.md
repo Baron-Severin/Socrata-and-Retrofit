@@ -59,13 +59,7 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
     }
 </code></pre>
 
-Now we construct the model that will be inflated with the server response.  We do this by looking through the JSON body, and using the @SerializedName annotation to match keys to the values we intend to store them in.  For example, this model can be used to create an object based on the following response.
-
-Note that within the JSON response, Location is a child object.  We are able to access it in the same manner by creating a second model object that iself uses @SerializedName to sort the information.  Please see the Github link for full code.
-
 Now we construct the model that will be inflated with the API response.  To find out which fields you require, look through the JSON body.  Create a variable for each field you wish to use.  Annotate this variable with the @SerializedName() tag.  Within that tag, enter the JSON key as a String.
-
-For each value, annotate the associated variable with @SerializedName(KEY), using the JSON key.
 
 <B>JSON Response:</B>
 <pre><code>
