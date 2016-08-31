@@ -54,7 +54,7 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
 
         // Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&category=COMMERCIAL&$limit=10
         @GET("resource/i5jq-ms7b.json")
-    	Call<``List<``BuildingPermit>> getPermitsByCategory(@Query("$$app_token") String apiToken,
+    	Call<``List``<``BuildingPermit``>> getPermitsByCategory(@Query("$$app_token") String apiToken,
                                                  @Query("category") String value, @Query("$limit") int limit);
     }
 </code></pre>
