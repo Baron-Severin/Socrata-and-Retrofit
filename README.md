@@ -63,11 +63,15 @@ Now we construct the model that will be inflated with the server response.  We d
 
 Note that within the JSON response, Location is a child object.  We are able to access it in the same manner by creating a second model object that iself uses @SerializedName to sort the information.  Please see the Github link for full code.
 
+Now we construct the model that will be inflated with the API response.  To find out which fields you require, look through the JSON body.  Create a variable for each field you wish to use.  Annotate this variable with the @SerializedName() tag.  Within that tag, enter the JSON key as a String.
+
+For each value, annotate the associated variable with @SerializedName(KEY), using the JSON key.
+
 <B>JSON Response:</B>
 <pre><code>
 	{
 		...
-		category: "SINGLE FAMILY / DUPLEX",
+		<B>category</B>: "SINGLE FAMILY / DUPLEX",
 		location: {
 		type: "Point",
 		coordinates: [
@@ -84,7 +88,7 @@ Note that within the JSON response, Location is a child object.  We are able to 
 <pre><code>
 	public class BuildingPermit {
 		...
-		@SerializedName("category")
+		@SerializedName("<B>category</B>")
 	    private String category;
 	    @SerializedName("value")
 	    private int value;
