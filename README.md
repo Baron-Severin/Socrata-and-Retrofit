@@ -13,7 +13,7 @@
 
 
 
-Retrofit is an Android and Java library that simplifies the process of making type-safe http requests.  We've written a basic Android application to show off how to use Socrata's APIs with Retrofit.  You can find the Retrofit Github page here.
+Retrofit is a library for Android and Java that simplifies the process of making type-safe HTTP requests.  We've written a basic Android application to show off how to use Socrata's APIs with Retrofit.  You can find the Retrofit Github page here.
 
 https://github.com/square/retrofit
 
@@ -108,7 +108,9 @@ After that, our call is constructed by combining these various components.
             }
 </code></pre>
 
-Our enqueue method automatically queues up the call, then we override onResponse and onFailure to deal with these.  <B>Depending on how the JSON response is formatted, we may need to either inflate an object with various children, or an array of objects.</B>  We verify that we receive a 200 response, then use the response.body to create our objects.  Several helper methods exist within response to help troubleshoot problems, and in particularly response.code() and response.message() can be extremely helpful when debugging.
+Our enqueue method automatically queues up the call, then we override onResponse and onFailure to handle each case.  <B>Depending on how the JSON response is formatted, we may need to either inflate an object with various children, or an array of objects.</B>  
+
+We verify that we receive a 200 HTTP response, then use the response.body() to create our objects.  Several helper methods exist within response to help troubleshoot problems, and in particular response.code() and response.message() can be extremely helpful when debugging.
 
 <pre><code>    private void enqueueCall(Call< List< BuildingPermit > > call) {
 
