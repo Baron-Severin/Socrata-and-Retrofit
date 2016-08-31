@@ -145,6 +145,8 @@ Full Application Code:
 https://github.com/Baron-Severin/Socrata-and-Retrofit
 
 
+
+
 Contributors:
 Severin Rudie: https://github.com/Baron-Severin
 
