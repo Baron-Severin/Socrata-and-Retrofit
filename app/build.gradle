@@ -26,10 +26,10 @@ dependencies {
 
     // Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
     // GSON (required for Retrofit)
     compile 'com.google.code.gson:gson:2.6.2'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
     // RecyclerView
     compile 'com.android.support:support-v4:24.2.0'
