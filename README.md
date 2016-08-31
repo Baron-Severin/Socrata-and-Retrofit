@@ -138,9 +138,14 @@ We verify that we receive a 200 HTTP response, then use the response.body() to c
     }
 </code></pre>
 
-And now we have a list of POJOs, and queries modular enough to be easily changed to fit user input!
+And now we have a list of Java objects, and modular queries that can be easily changed to fit user input.
 
 
 Full Application Code:
 https://github.com/Baron-Severin/Socrata-and-Retrofit
 
+
+Contributors:
+Severin Rudie: https://github.com/Baron-Severin
+Matthew Duffin: https://github.com/Duffin22
+Michael M Kang: https://github.com/mgkang0206
