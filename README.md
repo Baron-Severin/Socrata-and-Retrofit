@@ -1,16 +1,4 @@
-# Socrata-and-Retrofit
-
--what is retrofit / how does it work
--components of setting up retrofit
-	-Dependencies 
-	-Set up model
-	-set up request
-		-request in browser
-		-retrofit equivelent
-	-in main, set up client
-	-enqueue call
-
-
+# Using Socrata with Retrofit
 
 
 Retrofit is a library for Android and Java that simplifies the process of making type-safe HTTP requests.  We've written a basic Android application to show off how to use Socrata's APIs with Retrofit.  You can find the Retrofit Github page here.
