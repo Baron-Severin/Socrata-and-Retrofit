@@ -32,7 +32,7 @@ The first aspect of building our query is attaching a base URL.  Later we will a
 	}
 </code></pre>
 
-Next we create an interface that will be automatically subclassed by Retrofit.  Here we're structuring a template for future calls.  We will implement them later on with specific parameters.
+Next we create an interface that will be automatically subclassed by Retrofit.  Here we're structuring a template for future calls.  We will implement them later with specific parameters.
 
 <pre><code>	public interface ApiInterface {
 		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
