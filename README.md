@@ -59,7 +59,7 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
     }
 </code></pre>
 
-Now we construct the model that will be inflated with the API response.  To find out which fields you require, look through the JSON body.  Create a variable for each field you wish to use.  Annotate this variable with the @SerializedName() tag.  Within that tag, enter the JSON key as a String.
+Now we construct the model that will be inflated with the API response.  To find out which fields you require, look through the JSON body.  Create a variable for each field you wish to use, and annotate this variable with the @SerializedName() tag.  Within that tag, enter the JSON key as a String.
 
 <B>JSON Response:</B>
 <pre><code>
@@ -91,6 +91,8 @@ Now we construct the model that will be inflated with the API response.  To find
 	    ...
 	}
 </code></pre>
+
+Note that in the above example, the key 'location' is inflated into a custom child object.  This child object must also use the @SerializedName() annotation for its variables.
 
 Next, wherever we plan to make our call we instantiate a client, then use it to create a polymorphically-accessed subclass of our ApiInterface class.
 
