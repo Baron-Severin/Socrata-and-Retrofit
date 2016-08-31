@@ -72,14 +72,14 @@ For each value, annotate the associated variable with @SerializedName(KEY), usin
 	{
 		...
 		<B>category</B>: "SINGLE FAMILY / DUPLEX",
-		location: {
+		<B>location</B>: {
 		type: "Point",
 		coordinates: [
 		-122.393174,
 		47.571636
 		]
 		},
-		value: "0"
+		<B>value</B>: "0"
 		...
 	}
 </code></pre>
@@ -90,10 +90,10 @@ For each value, annotate the associated variable with @SerializedName(KEY), usin
 		...
 		@SerializedName("<B>category</B>")
 	    private String category;
-	    @SerializedName("value")
-	    private int value;
-	    @SerializedName("location")
+	    @SerializedName("<B>location</B>")
 	    private BuildingLocation location;
+	    @SerializedName("<B>value</B>")
+	    private int value;
 	    ...
 	}
 </code></pre>
