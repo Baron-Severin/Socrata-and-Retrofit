@@ -44,7 +44,7 @@ The first aspect of building our query is attaching a base URL.  Later we will a
 	}
 </code></pre>
 
-Next we create an interface that will be automatically subclassed by Retrofit.  Here we're structuring an outline for future calls.  This is not all of the information required, but later on we will implement these calls with their specific information.
+Next we create an interface that will be automatically subclassed by Retrofit.  Here we're structuring a template for future calls.  We will implement them later on with specific parameters.
 
 <pre><code>	public interface ApiInterface {
 		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
@@ -61,20 +61,11 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
 
 Now we construct the model that will be inflated with the server response.  We do this by looking through the JSON body, and using the @SerializedName annotation to match keys to the values we intend to store them in.  For example, this model can be used to create an object based on the following response.
 
-Note that within the JSON response, Location is a sub-object.  We are able to access it in the same manner by creating a second model object that iself uses @SerializedName to sort the information.  Please see the Github link for full code.
+Note that within the JSON response, Location is a child object.  We are able to access it in the same manner by creating a second model object that iself uses @SerializedName to sort the information.  Please see the Github link for full code.
 
-<pre><code>	public class BuildingPermit {
-		...
-		@SerializedName("category")
-	    private String category;
-	    @SerializedName("value")
-	    private int value;
-	    @SerializedName("location")
-	    private BuildingLocation location;
-	    ...
-	}
-
-	{
+<pre><code>
+	JSON Response:
+		{
 	...
 	category: "SINGLE FAMILY / DUPLEX",
 	location: {
@@ -86,6 +77,20 @@ Note that within the JSON response, Location is a sub-object.  We are able to ac
 	},
 	value: "0"
 	...
+	}
+</code></pre>
+
+<pre><code>
+	Model:
+	public class BuildingPermit {
+		...
+		@SerializedName("category")
+	    private String category;
+	    @SerializedName("value")
+	    private int value;
+	    @SerializedName("location")
+	    private BuildingLocation location;
+	    ...
 	}
 </code></pre>
 
