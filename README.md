@@ -147,8 +147,6 @@ https://github.com/Baron-Severin/Socrata-and-Retrofit
 
 
 <B>Contributors:</B>
-<pre><code>
-Severin Rudie: https://github.com/Baron-Severin
-Matthew Duffin: https://github.com/Duffin22
-Michael M Kang: https://github.com/mgkang0206
-</code></pre>
+#######Severin Rudie: https://github.com/Baron-Severin
+#######Matthew Duffin: https://github.com/Duffin22
+#######Michael M Kang: https://github.com/mgkang0206
