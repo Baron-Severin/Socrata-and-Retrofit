@@ -13,12 +13,10 @@
 
 
 
-Retrofit is an Android and Java library that simplifies the process of making type-safe http requests.  Built on top of OkHttp and GSON, it allows a developer to inflate responses directly into POJOs through clever use of dependency injection.  We've written a basic Android application to show off a simple implementation of retrofit.
+Retrofit is an Android and Java library that simplifies the process of making type-safe http requests.  We've written a basic Android application to show off a simple implementation of retrofit.
 
-
-First thing's first, we need to sort out our dependencies.  Note that Retrofit requires that GSON be added as well.
-<pre><code>
-    // Retrofit
+First things first, we need to sort out our dependencies.  Note that Retrofit requires that GSON be added as well.
+<pre><code>// Retrofit
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
@@ -26,7 +24,7 @@ First thing's first, we need to sort out our dependencies.  Note that Retrofit r
     compile 'com.google.code.gson:gson:2.6.2'
 </code></pre>
 
-We will start by building a query to one of Socrata's Seattle APIs, first attaching our base URL by defining the following client.
+The first aspect of building our query is attaching a base URL, to which we will later affix more specific modifiers.  In this case, we are using a Seattle public API provided by Socrata.
 
 <pre><code>
 	public class ApiClient {
@@ -49,12 +47,12 @@ Next we create an interface that will be automatically subclassed by Retrofit.  
 
 <pre><code>
 	public interface ApiInterface {
-		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=GAuG06jfO7zdOLS1s0OktESQU&$where=value<500&$limit=10
+		//// Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&$where=value<500&$limit=10
     	@GET("resource/i5jq-ms7b.json")
     	Call<List<BuildingPermit>> getPermitsByValue(@Query("$$app_token") String apiToken,
                                                  @Query("$where") String value, @Query("$limit") int limit);
 
-        // Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=GAuG06jfO7zdOLS1s0OktESQU&category=COMMERCIAL&$limit=10
+        // Example query: https://data.seattle.gov/resource/i5jq-ms7b.json?$$app_token=YOUR-APP-TOKEN-HERE&category=COMMERCIAL&$limit=10
         @GET("resource/i5jq-ms7b.json")
     Call<List<BuildingPermit>> getPermitsByCategory(@Query("$$app_token") String apiToken,
                                                  @Query("category") String value, @Query("$limit") int limit);
