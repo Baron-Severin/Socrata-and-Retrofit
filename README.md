@@ -102,7 +102,11 @@ Then wherever we plan to make our call, we create a client and use it to create 
 
 After that, our call is constructed by combining these various components.
 
-<pre><code>	Call< List< BuildingPermit > > call = apiInterface.getPermitsByValue(apiToken,
+<pre><code>public static final String WHERE_VALUE_IS_UNDER_X = "value<";
+
+	...
+
+	Call< List< BuildingPermit > > call = apiInterface.getPermitsByValue(apiToken,
                 ApiInterface.WHERE_VALUE_IS_UNDER_X + value, 100);
                 enqueueCall(call);
             }
