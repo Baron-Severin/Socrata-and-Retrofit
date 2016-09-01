@@ -128,6 +128,10 @@ We verify that we receive a 200 HTTP response, then use the response.body() to c
 
 Now we have a list of Java objects, and modular queries that can be easily changed to fit user input.
 
+<img src="/screenshots/screen1.png" alt="Drawing" width= "200"/> 
+<img src="/screenshots/screen2.png" alt="Drawing" width= "200"/> 
+<img src="/screenshots/screen3.png" alt="Drawing" width= "200"/> 
+
 
 <B>Full Application Code:</B>
 
